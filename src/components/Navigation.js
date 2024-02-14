@@ -14,7 +14,7 @@ function Navigation(props) {
                     <ul className="navbar-nav ms-auto py-4 py-lg-0">
                         <li className="nav-item">
                             {/* <a className="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a> */}
-                            <Link className="nav-link px-lg-3 py-3 py-lg-4" to="">Home</Link>
+                            <Link className="nav-link px-lg-3 py-3 py-lg-4" to="/">Home</Link>
                             {/* <NavLink
   to=""
   style={({ isActive, isPending, isTransitioning }) => {
@@ -46,11 +46,11 @@ function Navigation(props) {
                         </li>
                         <li className="nav-item">
                             {/* <a className="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Sample Post</a> */}
-                            {/* <Link className="nav-link px-lg-3 py-3 py-lg-4" to={"post"}>Posts</Link> */}
+                            <Link className="nav-link px-lg-3 py-3 py-lg-4" to={"/post"}>Posts</Link>
                         </li>
                         <li className="nav-item">
                             {/* <a className="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a> */}
-                            {/* <Link className="nav-link px-lg-3 py-3 py-lg-4" to={"contact"}>Contact</Link> */}
+                            <Link className="nav-link px-lg-3 py-3 py-lg-4" to={"/contact"}>Contact</Link>
                         </li>
                     </ul>
                 </div>
