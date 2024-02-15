@@ -14,23 +14,26 @@ import Error from './components/Error';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   
     this.state = {
-      cname:'',
+      cname:'anb',
       cphone:'',
       cemail:'',
       cmessage:'',
       isSubmit:false
-    }
-  }
-  contactHandler=(event)=>{
+    };
+  };
+
+  contactHandler = (event)=>{
     let cn=event.target.cname.value;
-    this.setState({cname:cn,cemail:event.target.cemail.value,cphone:event.target.cphone.value,cmessage:event.target.cmessage.value});
-    let a=this.state.cname;
-    alert(a);
+    let ce=event.target.cemail.value;
+    let cp=event.target.cphone.value;
+    let cm=event.target.cmessage.value;
+    this.setState({cname:cn,cemail:ce,cphone:cp,cmessage:cm,isSubmit:true},()=>{ alert(this.state.cname)});
     event.preventDefault();
-  }
+  };
+  
   render() {
     const router = createBrowserRouter([
       {
@@ -51,7 +54,7 @@ class App extends Component {
       {
         path: '/contact',
         element:<><Navigation />
-        <Header /><Contact submit={(event)=>this.contactHandler(event)} /><Footer /></>,
+        <Header />{this.state.isSubmit?<div><p>Message submitted successful</p></div>:<Contact submit={this.contactHandler} />}<Footer /></>,
       },
       {
         path: '*',
@@ -63,7 +66,7 @@ class App extends Component {
       <React.Fragment>
         {/* <Router> */}
 
-{/*             <Routes>
+{/*           <Routes>
               <Route path="" element={<Main />} />
               <Route path="about" element={<About />} />
               <Route path="post" element={<Post />} />
