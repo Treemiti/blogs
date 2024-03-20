@@ -9,15 +9,35 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Post from './components/Post';
 import Error from './components/Error';
+import { v4 as uuidv4 } from 'uuid';
+//import firebase from 'firebase';
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, set } from "firebase/database";
 
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyB3rFWruUlKsMs9fTM2TS34bAzVdeaywKk",
+  authDomain: "courses-1136e.firebaseapp.com",
+  databaseURL: "https://courses-1136e-default-rtdb.firebaseio.com",
+  projectId: "courses-1136e",
+  storageBucket: "courses-1136e.appspot.com",
+  messagingSenderId: "652834794900",
+  appId: "1:652834794900:web:d3953ccfb40db0a26e7381"
+};
 
+// Initialize Firebase
+//if(firebase.app.length>0)
+//{
+  const app = initializeApp(firebaseConfig);
+//}
 
 class App extends Component {
   constructor(props) {
     super(props);
   
     this.state = {
-      cname:'anb',
+      cid:uuidv4(),
+      cname:'',
       cphone:'',
       cemail:'',
       cmessage:'',
@@ -30,7 +50,21 @@ class App extends Component {
     let ce=event.target.cemail.value;
     let cp=event.target.cphone.value;
     let cm=event.target.cmessage.value;
-    this.setState({cname:cn,cemail:ce,cphone:cp,cmessage:cm,isSubmit:true},()=>{ alert(this.state.cname)});
+    this.setState({cid:uuidv4(),cname:cn,cemail:ce,cphone:cp,cmessage:cm,isSubmit:true},()=>{ alert(this.state.cname)});
+
+    const db = getDatabase(app);
+    set(ref(db, 'courses/' + this.state.cid), {
+        cname:cn,
+        cemail:ce,
+        cphone:cp,
+        cmessage:cm,
+    });
+
+    if(this.state.isSubmit)
+    {
+        console.log("Data Inserted successfully");
+    }
+
     event.preventDefault();
   };
   
